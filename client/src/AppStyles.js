@@ -19,4 +19,8 @@ export const gridWrapperStyles = {
     width: "100%",
     maxWidth: "1000px",
     margin: "0 auto",
+    backgroundColor: '#fff',
+    minHeight: 'calc(100vh - 65px)',
+    fontSize: 'calc(10px + 2vmin)',
+    color: '#000',
   }
