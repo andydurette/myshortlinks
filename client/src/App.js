@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import "./App.css";
 import { Grid, Box } from "@mui/material";
 import ShortLinkGrid from "./components/shortLinkGrid/ShortLinkGrid";
 import { headerStyles, headerLogo, gridWrapperStyles } from "./AppStyles";
@@ -86,7 +85,6 @@ function App() {
             direction={{ xs: "column", sm: "row" }}
             justifyContent="center"
             alignItems="center"
-            className="App-header"
             sx={gridWrapperStyles}
           >
             <Grid container item>

@@ -2,12 +2,13 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import PropTypes from 'prop-types';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function ErrorSnackBar({
+function ErrorSnackBar({
   openSnackbar,
   setOpenSnackbar,
   snackbarMessage
@@ -33,3 +34,18 @@ export default function ErrorSnackBar({
     </Stack>
   );
 }
+
+// Added for prop clarity
+ErrorSnackBar.propTypes = {
+  setOpenSnackbar: PropTypes.func,
+  openSnackbar: PropTypes.bool,
+  snackbarMessage: PropTypes.object
+};
+
+ErrorSnackBar.defaultProps = {
+  setOpenSnackbar:() => {},
+  openSnackbar: false,
+  snackbarMessage: {}
+};
+
+export default ErrorSnackBar;

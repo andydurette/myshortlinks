@@ -1,6 +1,7 @@
 import { Grid, Button, TextField, Typography } from "@mui/material";
 import { createShortLink } from "../../lib/apiCalls";
 import { inputFieldStyles, inputButtonStyles } from "./InputLinkGridStyles";
+import PropTypes from 'prop-types';
 
 function InputLinkGrid({
   setShortLinkInput,
@@ -44,5 +45,23 @@ function InputLinkGrid({
     </Grid>
   );
 }
+
+
+// Added for prop clarity
+InputLinkGrid.propTypes = {
+  setShortLinkInput: PropTypes.func,
+  setShortLink: PropTypes.func,
+  setOpenSnackbar: PropTypes.func,
+  setSnackbarMessage:PropTypes.func,
+  shortLinkInput: PropTypes.string,
+};
+
+InputLinkGrid.defaultProps = {
+  setShortLinkInput: () => {},
+  setShortLink: () => {},
+  setOpenSnackbar: () => {},
+  setSnackbarMessage:() => {},
+  shortLinkInput: '',
+};
 
 export default InputLinkGrid;

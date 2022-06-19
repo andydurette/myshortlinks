@@ -4,6 +4,7 @@ import {
   shortLinkGridTypography,
   shortLinkGridButton,
 } from "./ShortLinkGridStyles";
+import PropTypes from 'prop-types';
 
 function ShortLinkGrid({ shortLink, setSnackbarMessage, setOpenSnackbar }) {
 
@@ -44,5 +45,23 @@ function ShortLinkGrid({ shortLink, setSnackbarMessage, setOpenSnackbar }) {
     </Grid>
   );
 }
+
+// Added for prop clarity
+ShortLinkGrid.propTypes = {
+  setSnackbarMessage:PropTypes.func, 
+  setOpenSnackbar:PropTypes.func,
+  shortLink:PropTypes.object, 
+};
+
+ShortLinkGrid.defaultProps = {
+  setSnackbarMessage:() => {}, 
+  setOpenSnackbar:() => {},
+  shortLink: {
+    _id: '',
+    full: '',
+    short: '',
+    __v: 0
+  }, 
+};
 
 export default ShortLinkGrid;
