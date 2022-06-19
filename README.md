@@ -2,7 +2,7 @@
 
 Link shortening application that uses mongodb for storage and react as front end with express handling request.
 
-Live View: https://dashboard.heroku.com/apps/myshortlinks
+Live View: https://myshortlinks.herokuapp.com/
 
 ![markdown-preview-image](readmeAssets/visual.jpg)
 
@@ -12,6 +12,7 @@ Aside from shortening the url.
 
 1. If you put in a incorrect shortlink or the server is down you will be noticed of an error.
 2. When you click copy you are notified you have successfully copied the link to your clipboard.
+3. Local storage was added to record the last shortlink of the user and upon reloading will render it as long as it still exist.
 
 ## Steps to run locally
 

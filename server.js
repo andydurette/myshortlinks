@@ -12,7 +12,7 @@ connectDB();
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
-// Serve up static assets (usually on heroku but in this case also on dev)
+// Serve up static assets from build in production
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
