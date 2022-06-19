@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const shortId = require('shortid')
 
+// Defines the shape of the shortLink documents
 const shortUrlSchema = new mongoose.Schema({
   full: {
     type: String,

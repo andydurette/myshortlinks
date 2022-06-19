@@ -61,6 +61,7 @@ function App() {
     redirectCall();
   }, []);
 
+  // Check for an existing shortLink id for rending to the screen
   useEffect(() => {
     localStorageCall();
   }, []);
@@ -96,6 +97,7 @@ function App() {
                 setSnackbarMessage={setSnackbarMessage}
                 setOpenSnackbar={setOpenSnackbar}
               />
+              {/* Hides unless a user creates a shortlink */}
               {shortLink && (
                 <ShortLinkGrid
                   shortLink={shortLink}
@@ -103,7 +105,7 @@ function App() {
                   setOpenSnackbar={setOpenSnackbar}
                 />
               )}
-              {/* Report errors or successes to uses */}
+              {/* Report errors or successes to users */}
               <SnackBar
                 openSnackbar={openSnackbar}
                 setOpenSnackbar={setOpenSnackbar}
