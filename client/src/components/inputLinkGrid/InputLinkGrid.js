@@ -2,6 +2,7 @@ import { Grid, Button, TextField, Typography } from "@mui/material";
 import { createShortLink } from "../../lib/apiCalls";
 import { inputFieldStyles, inputButtonStyles } from "./InputLinkGridStyles";
 import PropTypes from 'prop-types';
+import urlValidator from '../../lib/urlValidator';
 
 function InputLinkGrid({
   setShortLinkInput,
@@ -12,15 +13,32 @@ function InputLinkGrid({
 }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const getShortLink = await createShortLink(shortLinkInput);
-    if (!getShortLink.error) {
-      setShortLink(getShortLink);
-      // Setting local storage value of successful creation of a shortLink
-      localStorage.setItem('savedShortLinkId', getShortLink._id);
-    } else {
+    if(urlValidator(shortLinkInput)){
+      const getShortLink = await createShortLink(shortLinkInput);
+      if (!getShortLink.error) {
+        setShortLink(getShortLink);
+        // Setting local storage value of successful creation of a shortLink
+        localStorage.setItem('savedShortLinkId', getShortLink._id);
+        setOpenSnackbar(true);
+        setSnackbarMessage({
+          severity: "success",
+          copy: `Short link Created`,
+        });
+      } else {
+        setOpenSnackbar(true);
+        setSnackbarMessage({
+          severity: "error",
+          copy: `Error: ${getShortLink.error}`,
+        });
+      }
+    }else{
       setOpenSnackbar(true);
-      setSnackbarMessage(`Error: ${getShortLink.error}`);
+      setSnackbarMessage({
+        severity: "error",
+        copy: `Error: A valid url wasn't provided please check the url and including formatting such as http or https`
+      });
     }
+
   };
 
   return (

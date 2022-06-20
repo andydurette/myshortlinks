@@ -35,12 +35,10 @@ function App() {
           severity: "error",
           copy: `Error: ${redirectLink.error}`,
         });
-        
       }
     }else{
       setShowPage(true);
     }
-    
   };
 
   // Checks then verifies if the use short link last used by the browser exists
