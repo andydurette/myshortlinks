@@ -13,6 +13,7 @@ Aside from shortening the url.
 1. If you put in a incorrect shortlink or the server is down you will be noticed of an error.
 2. When you click copy you are notified you have successfully copied the link to your clipboard.
 3. Local storage was added to record the last shortlink of the user and upon reloading will render it as long as it still exist.
+4. Added url validation to confirm a url is valid and reports to user if they try to make a short link out of an invalid url
 
 ## Steps to run locally
 
