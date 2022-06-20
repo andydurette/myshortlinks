@@ -38,7 +38,6 @@ function ShortLinkGrid({ shortLink, setSnackbarMessage, setOpenSnackbar }) {
         variant="contained" 
         sx={shortLinkGridButton}
         onClick={copyShortLink}
-        
         >
         Copy
       </Button>
