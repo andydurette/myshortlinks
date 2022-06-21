@@ -23,6 +23,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
+    "mongo-sanitize": "^1.1.0",
     "mongoose": "^5.9.1",
     "node-url-shortener": "^2.0.3",
     "shortid": "^2.2.15"
