@@ -18,7 +18,7 @@ export const createShortLink = async (shortLinkInput) => {
 // Function to redirect if using a url provided shortLink value
 export const redirectToShortLink = async (shortLinkParam) => {
   try {
-    const res = await fetch(`/shortUrlRedirect?shortUrl=${shortLinkParam}`);
+    const res = await fetch(`/shortUrlRedirect/${shortLinkParam}`);
     const redirectUrl = await res.json();
     return redirectUrl
   } catch (error) {
@@ -29,7 +29,7 @@ export const redirectToShortLink = async (shortLinkParam) => {
 // Function to redirect if using a url provided shortLink value
 export const confirmAndCallShortLink = async (shortLinkId) => {
   try {
-    const res = await fetch(`/shortUrlConfirm?id=${shortLinkId}`);
+    const res = await fetch(`/shortUrlConfirm/${shortLinkId}`);
     const redirectUrl = await res.json();
     return redirectUrl
   } catch (error) {
