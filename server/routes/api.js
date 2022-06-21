@@ -8,7 +8,9 @@ apiRouter.route('/shortUrlCreate').post(async (req, res) => {
         const createdShortUrl = await ShortUrl.create({ full: req.body.full });
         res.status(200).json(createdShortUrl);
     }catch(err){
-        res.status(500).json({error:'Server issue please retry'});
+        // Give logging of the error to the host
+        console.log(err.message);
+        res.status(500).json({error:'Server issue please retry later'});
     }
 });
 
@@ -19,7 +21,9 @@ apiRouter.route('/shortUrlRedirect').post(async (req, res) => {
         if (originalUrl === null) return res.status(404).json({error:'Short link for redirect not found'})
         res.status(200).json(originalUrl);
     }catch(err){
-        res.status(500).json({error:'Server issue please retry'});
+        // Give logging of the error to the host
+        console.log(err.message);
+        res.status(500).json({error:'Server issue please retry later'});
     }
 });
 
@@ -29,6 +33,8 @@ apiRouter.route('/shortUrlConfirm').post(async (req, res) => {
         const shortUrls = await ShortUrl.findById(req.body.id);
         res.status(200).json(shortUrls);
     }catch(err){
+        // Give logging of the error to the host
+        console.log(err.message);
         res.status(500).json({error:'Server issue please retry'});
     }  
 });
