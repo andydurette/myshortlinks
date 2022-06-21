@@ -8,27 +8,33 @@ apiRouter.route('/shortUrlCreate').post(async (req, res) => {
         const createdShortUrl = await ShortUrl.create({ full: req.body.full });
         res.status(200).json(createdShortUrl);
     }catch(err){
-        res.status(500).json({error:'Server issue please retry'});
+        // Give logging of the error to the host
+        console.log('Error - shortUrlCreate:', err.message);
+        res.status(500).json({error:'Server issue please retry later'});
     }
 });
 
 // Send back redirect value
-apiRouter.route('/shortUrlRedirect').post(async (req, res) => {
+apiRouter.route('/shortUrlRedirect/:shortUrl').get(async (req, res) => {
     try{
-        const originalUrl = await ShortUrl.findOne({ short: req.body.shortUrl });
+        const originalUrl = await ShortUrl.findOne({ short: req.params.shortUrl });
         if (originalUrl === null) return res.status(404).json({error:'Short link for redirect not found'})
         res.status(200).json(originalUrl);
     }catch(err){
-        res.status(500).json({error:'Server issue please retry'});
+        // Give logging of the error to the host
+        console.log('Error - shortUrlRedirect:', err.message);
+        res.status(500).json({error:'Server issue please retry later'});
     }
 });
 
 // Confirm localStorage value and send back result
-apiRouter.route('/shortUrlConfirm').post(async (req, res) => {
+apiRouter.route('/shortUrlConfirm/:id').get(async (req, res) => {
     try{
-        const shortUrls = await ShortUrl.findById(req.body.id);
+        const shortUrls = await ShortUrl.findById(req.params.id);
         res.status(200).json(shortUrls);
     }catch(err){
+        // Give logging of the error to the host
+        console.log('Error - shortUrlConfirm:', err.message);
         res.status(500).json({error:'Server issue please retry'});
     }  
 });
