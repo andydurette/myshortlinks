@@ -1,11 +1,13 @@
 const express = require('express')
 const ShortUrl = require('../models/shortUrl');
 const apiRouter = express.Router();
+const sanitize = require('mongo-sanitize');
 
 // Create a route
 apiRouter.route('/shortUrlCreate').post(async (req, res) => {
     try{
-        const createdShortUrl = await ShortUrl.create({ full: req.body.full });
+        const sanitizedBody = sanitize(req.body.full);
+        const createdShortUrl = await ShortUrl.create({ full: sanitizedBody});
         res.status(200).json(createdShortUrl);
     }catch(err){
         // Give logging of the error to the host
@@ -17,7 +19,8 @@ apiRouter.route('/shortUrlCreate').post(async (req, res) => {
 // Send back redirect value
 apiRouter.route('/shortUrlRedirect/:shortUrl').get(async (req, res) => {
     try{
-        const originalUrl = await ShortUrl.findOne({ short: req.params.shortUrl });
+        const sanitizedParams = sanitize(req.params.shortUrl);
+        const originalUrl = await ShortUrl.findOne({ short: sanitizedParams });
         if (originalUrl === null) return res.status(404).json({error:'Short link for redirect not found'})
         res.status(200).json(originalUrl);
     }catch(err){
@@ -30,7 +33,8 @@ apiRouter.route('/shortUrlRedirect/:shortUrl').get(async (req, res) => {
 // Confirm localStorage value and send back result
 apiRouter.route('/shortUrlConfirm/:id').get(async (req, res) => {
     try{
-        const shortUrls = await ShortUrl.findById(req.params.id);
+        const sanitizedParams = sanitize(req.params.id);
+        const shortUrls = await ShortUrl.findById(sanitizedParams);
         res.status(200).json(shortUrls);
     }catch(err){
         // Give logging of the error to the host
